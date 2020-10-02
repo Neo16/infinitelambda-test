@@ -12,10 +12,14 @@ namespace InfiniteLambdaTest.Services
             return RabinMillerIsPrime(n, 10);
         }
    
-        public int FindNextPrime(int from)
+        public int? FindNextPrime(int from)
         {            
             while(!RabinMillerIsPrime(from, 10))
             {
+                if (from == int.MaxValue)
+                {
+                    return null;
+                }
                 from++;
             }
             return from;

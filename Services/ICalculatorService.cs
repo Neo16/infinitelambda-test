@@ -8,6 +8,6 @@ namespace InfiniteLambdaTest.Services
     public interface ICalculatorService
     {
         bool IsPrime(int number);
-        int FindNextPrime(int number);   
+        int? FindNextPrime(int number);   
     }
 }

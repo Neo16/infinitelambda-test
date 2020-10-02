@@ -26,6 +26,7 @@ namespace InfiniteLambdaTest.Controllers
             "Calculates weather a number is a prime.",
             "It's using the using the Miller Rabin algorithm. It might give false positives, but its extremely unlikely."          
         )]
+        [ProducesResponseType(typeof(bool), 200)]
         [HttpGet("is-prime/{number}")]
         public bool IsPrime([Range(0, int.MaxValue)] int number)
         {
@@ -33,11 +34,14 @@ namespace InfiniteLambdaTest.Controllers
         }
 
         [SwaggerOperation(
-          "Returns the next prime after a given number",
-          "i.e. Input: from, output: P where P >=from and P is prime. Relies on Miller Rabin algorithm"
+          "Returns the next prime after a given number. (In integer range)",
+          "i.e. Input: from, output: P where P >=from and P is prime. Relies on Miller Rabin algorithm." +
+          "Returns no content, if no prime number found before reaching the integer max value. "
         )]
+        [ProducesResponseType(typeof(int?), 200)]
+        [ProducesResponseType(204)]
         [HttpGet("next-prime")]
-        public int GetNextPrime([Range(0, int.MaxValue)] int from)
+        public int? GetNextPrime([Range(0, int.MaxValue)] int from)
         {
             return _calculator.FindNextPrime(from);
         }
